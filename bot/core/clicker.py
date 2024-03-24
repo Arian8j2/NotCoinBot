@@ -381,12 +381,12 @@ class Clicker:
                             continue
 
                     if floor(profile_data['data'][0]['availableCoins'] /
-                             profile_data['data'][0]['multipleClicks']) < 160:
+                             profile_data['data'][0]['multipleClicks']) < settings.MAX_CLICK_COUNT:
                         max_clicks_count: int = floor(profile_data['data'][0]['availableCoins'] /
                                                       profile_data['data'][0]['multipleClicks'])
 
                     else:
-                        max_clicks_count: int = 160
+                        max_clicks_count: int = settings.MAX_CLICK_COUNT
 
                     clicks_count: int = (randint(a=settings.MIN_CLICKS_COUNT, b=max_clicks_count) *
                                          profile_data['data'][0]['multipleClicks'] * turbo_multiplier)

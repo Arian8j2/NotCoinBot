@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     SERVER_HOST: str = "0.0.0.0"
     SERVER_PORT: int = 63351
 
+    MAX_CLICK_COUNT: int = 160
     MIN_CLICKS_COUNT: int = 5
     MIN_AVAILABLE_COINS: int = 200
 
