@@ -167,7 +167,7 @@ class Clicker:
                 if response_json.get('ok'):
                     available_coins = response_json.get('data', [])[0].get('availableCoins')
 
-                    logger.success(f'{self.session_name} | Успешно сделал Click | Balance: '
+                    logger.success(f'{self.session_name} | Successfull Click | Balance: '
                                    f'{balance + clicks_count} (+{clicks_count}) | Total Coins: {total_coins}')
 
                     next_hash: int | None = eval_js(
@@ -402,7 +402,7 @@ class Clicker:
                                                    turbo=active_turbo)
 
                         if status_code == 400:
-                            logger.warning(f"{self.session_name} | Недействительные данные: {status_code}")
+                            logger.warning(f"{self.session_name} | Invalid data: {status_code}")
                             await asyncio.sleep(delay=35)
 
                             await self.close_connectors(client, ssl_conn)
@@ -544,13 +544,13 @@ class Clicker:
                                                                  b=settings.SLEEP_BEFORE_ACTIVATE_FREE_BUFFS[1])
 
                                 logger.info(
-                                    f'{self.session_name} | Сплю {random_sleep_time} перед активацией '
-                                    f'ежедневного Full Energy')
+                                    f'{self.session_name} | Sleep {random_sleep_time} seconds before activating '
+                                    f'daily Full Energy')
 
                                 await asyncio.sleep(delay=random_sleep_time)
 
                                 if await self.activate_task(client=client, task_id=2):
-                                    logger.success(f'{self.session_name} | Успешно запросил ежедневный Full Energy')
+                                    logger.success(f'{self.session_name} | Successfully requested daily Full Energy')
 
                                     continue
 
@@ -560,12 +560,12 @@ class Clicker:
                             if available_coins < min_available_coins:
                                 sleep_time_to_min_coins = settings.SLEEP_BY_MIN_COINS_TIME
 
-                                logger.info(f"{self.session_name} | Достигнут минимальный баланс: {available_coins}")
-                                logger.info(f"{self.session_name} | Сплю {sleep_time_to_min_coins} сек.")
+                                logger.info(f"{self.session_name} | Minimum balance reached: {available_coins}")
+                                logger.info(f"{self.session_name} | Sleep {sleep_time_to_min_coins} seconds.")
 
                                 await asyncio.sleep(delay=sleep_time_to_min_coins)
 
-                                logger.info(f"{self.session_name} | Продолжаю кликать!")
+                                logger.info(f"{self.session_name} | I keep clicking!")
 
                                 continue
 
@@ -575,24 +575,24 @@ class Clicker:
                                                              b=settings.SLEEP_BEFORE_ACTIVATE_FREE_BUFFS[1])
 
                             logger.info(
-                                f'{self.session_name} | Сплю {random_sleep_time} перед запросом ежедневного Turbo')
+                                f'{self.session_name} | Sleep {random_sleep_time} seconds before requesting daily Turbo')
 
                             await asyncio.sleep(delay=random_sleep_time)
 
                             if await self.activate_task(client=client, task_id=3):
-                                logger.success(f'{self.session_name} | Успешно запросил ежедневное Turbo')
+                                logger.success(f'{self.session_name} | Successfully requested daily Turbo')
 
                                 random_sleep_time: int = randint(a=settings.SLEEP_BEFORE_ACTIVATE_TURBO[0],
                                                                  b=settings.SLEEP_BEFORE_ACTIVATE_TURBO[1])
 
-                                logger.info(f'{self.session_name} | Сплю {random_sleep_time} перед активацией Turbo')
+                                logger.info(f'{self.session_name} | Sleep {random_sleep_time} seconds before activating Turbo')
 
                                 await asyncio.sleep(delay=random_sleep_time)
 
                                 turbo_multiplier: int | None = await self.activate_turbo(client=client)
 
                                 if turbo_multiplier:
-                                    logger.success(f'{self.session_name} | Успешно активировал Turbo: '
+                                    logger.success(f'{self.session_name} | Successfully activated Turbo: '
                                                    f'x{turbo_multiplier}')
                                     active_turbo: bool = True
                                     continue
@@ -609,14 +609,14 @@ class Clicker:
                     random_sleep_time: int = randint(a=settings.SLEEP_BETWEEN_CLICK[0],
                                                      b=settings.SLEEP_BETWEEN_CLICK[1])
 
-                    logger.info(f'{self.session_name} | Сплю {random_sleep_time} сек.')
+                    logger.info(f'{self.session_name} | Sleep {random_sleep_time} second.')
                     await asyncio.sleep(delay=random_sleep_time)
 
                 else:
                     random_sleep_time: int = randint(a=settings.SLEEP_BETWEEN_CLICK[0],
                                                      b=settings.SLEEP_BETWEEN_CLICK[1])
 
-                    logger.info(f'{self.session_name} | Сплю {random_sleep_time} сек.')
+                    logger.info(f'{self.session_name} | Sleep {random_sleep_time} second.')
                     await asyncio.sleep(delay=random_sleep_time)
 
         except InvalidSession as error:

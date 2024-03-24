@@ -58,7 +58,7 @@ async def start_process(logger: Logger) -> None:
     session_files: list[str] = get_session_files()
     proxies: list[Proxy] = get_proxies()
 
-    logger.info(f"Обнаружено {len(session_files)} сессий / {len(proxies)} прокси")
+    logger.info(f"{len(session_files)} sessions / {len(proxies)} proxies detected")
 
     await asyncio.sleep(delay=.25)
 
@@ -84,7 +84,7 @@ async def start_process(logger: Logger) -> None:
     elif user_action == 3:
         clients = await get_clients(session_files=session_files)
 
-        logger.info("Бот запущен без возможности управления через телеграмм")
+        logger.info("The bot is launched without the ability to control via Telegram")
 
         await run_tasks(clients=clients)
 
