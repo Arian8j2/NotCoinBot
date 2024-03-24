@@ -4,8 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_ignore_empty=True)
 
-    API_ID: int | str = ''
-    API_HASH: str = ''
+    SESSION_STRING: str = ''
 
     SERVER_HOST: str = "0.0.0.0"
     SERVER_PORT: int = 63351
